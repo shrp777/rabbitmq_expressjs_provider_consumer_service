@@ -24,12 +24,12 @@ services:
     container_name: mq_consumer_service
     image: node:alpine
     #command: npm start #production
-    command: sh -c 'npm i && npm run watch' #pour le développement seulement (fonctionne uniquement si Nodemon est installé)
+    command: sh -c 'npm i && npm run watch' #pour le développement seulement
     env_file:
       - ./mq_consumer_service/.env
     working_dir: /usr/src/app
     volumes:
-      - ./mq_consumer_service:/usr/src/app #synchronise le répertoire local ./notifications_api avec le répertoire du container /usr/src/app
+      - ./mq_consumer_service:/usr/src/app #synchronise le répertoire local ./mq_consumer_service avec le répertoire du container /usr/src/app
     ports:
       - 3333:3000 #associe le port local 3333 au port 3000 du container
     networks:
