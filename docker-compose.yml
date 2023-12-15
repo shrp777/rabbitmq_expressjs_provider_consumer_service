@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   mq:
-    container_name: "mq"
+    container_name: mq
     image: rabbitmq:3.8-management-alpine
     env_file:
       - ./mq/.env
@@ -24,7 +24,7 @@ services:
     container_name: mq_consumer_service
     image: node:alpine
     #command: npm start #production
-    command: sh -c 'npm i && npm run watch' #pour le développement seulement
+    command: sh -c 'npm ci && npm run watch' #pour le développement seulement
     env_file:
       - ./mq_consumer_service/.env
     working_dir: /usr/src/app
