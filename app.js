@@ -14,10 +14,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
 
-const queue = "orders.notifications";
-const consumerTag = "mq_listerner_service";
+const queue = process.env.MQ_QUEUE;
+const consumerTag = process.env.MQ_CONSUMER_TAG;
 
-const connection = await amqplib.connect(process.env.AMQP_URL, "heartbeat=60");
+const connection = await amqplib.connect(
+  process.env.MQ_AMQP_URL,
+  "heartbeat=60"
+);
 const channel = await connection.createChannel();
 channel.prefetch(10);
 

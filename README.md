@@ -1,5 +1,7 @@
 # Message Queue Listener
 
+Service basé sur Node.js et Express.js illustrant l'écoute d'un service RabbitMQ
+
 --
 
 !["Logotype Shrp"](https://shrp.dev/images/shrp.png)
