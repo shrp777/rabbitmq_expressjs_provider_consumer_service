@@ -1,6 +1,6 @@
-# Message Queue Listener
+# Message Queue Consumer Service
 
-Service basé sur Node.js et Express.js illustrant l'écoute d'un service RabbitMQ
+Exemple minimal de micro service basé Node.js et Express.js illustrant l'écoute d'un service RabbitMQ via AMQP
 
 --
 
