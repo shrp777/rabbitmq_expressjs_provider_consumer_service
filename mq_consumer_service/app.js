@@ -38,10 +38,38 @@ await channel.consume(
 );
 
 async function onMessageReceived(msg) {
-  const decodedMessage = JSON.parse(Buffer.from(msg.content).toString());
-  console.log(decodedMessage);
-
   console.log("Message received");
+  try {
+    //console.log(msg);
+    const { consumerTag, deliveryTag, redelivered, exchange, routingKey } =
+      msg.fields;
+
+    console.log({ consumerTag });
+    console.log({ deliveryTag });
+    console.log({ redelivered });
+    console.log({ exchange });
+    console.log({ routingKey });
+
+    const {
+      headers,
+      deliveryMode,
+      priority,
+      replyTo,
+      expiration,
+      messageId,
+      timestamp,
+      type,
+      userId,
+      appId,
+      clusterId
+    } = msg.properties;
+    console.log({ headers });
+
+    const payload = JSON.parse(Buffer.from(msg.content).toString());
+    console.log(payload);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 process.once("SIGINT", async () => {
