@@ -23,6 +23,14 @@ Exemple minimal de micro service basé Node.js et Express.js illustrant la commu
 - Création et remplissage des fichiers `./mq_provider_service/.env` et `./mq/.env` sur la base des fichiers ".env.example" fournis,
 - Le service __mq_provider_service__ est directement installé et démarré par Docker, ne pas effectuer de commande `npm install` ou `npm start`. Un système de Hot Reloading permet de recharger le service Node.js à chaque modification d'un fichier dans le dossier ``./mq_provider_service``,
 
+- L'Envoi d'une requête HTTP POST sur <http://localhost:3334/messages> (avec body au format JSON contenant un attribut "message") permet d'envoyer le message contenu dans la requête HTTP à RabbitMQ.
+
+```SHELL
+curl --request POST \
+  --url http://localhost:3334/messages \
+  --data '{"message":"Hello, World!"}'
+```
+
 --
 
 !["Logotype Shrp"](https://shrp.dev/images/shrp.png)

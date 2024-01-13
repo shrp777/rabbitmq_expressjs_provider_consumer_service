@@ -68,8 +68,12 @@ async function consume(
       } = message.properties;
       console.log({ headers });
 
-      const payload = JSON.parse(Buffer.from(message.content).toString());
-      console.log(payload);
+      const content = Buffer.from(message.content).toString();
+
+      if (content !== "") {
+        const payload = JSON.parse(content);
+        console.log(payload);
+      }
     } catch (error) {
       console.error(error);
     }

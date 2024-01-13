@@ -1,14 +1,25 @@
 import amqplib from "amqplib";
 
+const DIRECT = "direct";
+const FANOUT = "fanout";
+const TOPIC = "topic";
+const HEADERS = "headers";
+
+const EXCHANGE_TYPES = [DIRECT, FANOUT, TOPIC, HEADERS];
+
 async function publish(
   amqpUrl,
   message,
   exchange,
   queue,
   routingKey,
-  options = { exchangeType: "direct", durable: true }
+  options = { exchangeType: DIRECT, durable: true }
 ) {
   let channel, connection;
+
+  if (EXCHANGE_TYPES.indexOf(options.exchangeType) === -1) {
+    throw new Error(`${options.exchangeType} is not a valid Exchange Type`);
+  }
 
   try {
     console.log("Publishing");
