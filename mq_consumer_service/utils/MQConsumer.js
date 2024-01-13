@@ -71,12 +71,20 @@ async function consume(
       const content = Buffer.from(message.content).toString();
 
       if (content !== "") {
-        const payload = JSON.parse(content);
+        const payload = tryParseJSONorGetText(content);
         console.log(payload);
       }
     } catch (error) {
       console.error(error);
     }
+  }
+}
+
+function tryParseJSONorGetText(str) {
+  try {
+    return JSON.parse(str);
+  } catch (error) {
+    return str;
   }
 }
 
