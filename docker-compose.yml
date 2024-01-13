@@ -38,6 +38,24 @@ services:
       mq:
         condition: service_healthy
 
+  mq_provider_service:
+    container_name: mq_provider_service
+    image: node:alpine
+    #command: npm start #production
+    command: sh -c 'npm ci && npm run watch' #pour le développement seulement
+    env_file:
+      - ./mq_provider_service/.env
+    working_dir: /usr/src/app
+    volumes:
+      - ./mq_provider_service:/usr/src/app #synchronise le répertoire local ./mq_provider_service avec le répertoire du container /usr/src/app
+    ports:
+      - 3334:3000 #associe le port local 3333 au port 3000 du container
+    networks:
+      - shrp
+    depends_on:
+      mq:
+        condition: service_healthy
+
 networks:
   shrp:
     driver: bridge
