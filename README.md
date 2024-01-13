@@ -1,4 +1,4 @@
-# Rabbit MQ Consumer Service (Docker + Node.js + Express.js)
+# Rabbit MQ Provider / Consumer Services (Docker + Node.js + Express.js)
 
 Exemple minimal de micro service basé Node.js et Express.js illustrant la communication asynchrone à l'aide de messages basés sur le protocole AMQP et le Message Broker RabbitMQ
 
